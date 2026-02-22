@@ -148,10 +148,10 @@ export default function Shipping() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-shipping-title">{t("shipping.title", language)}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-shipping-title">{t("shipping.title", language)}</h1>
           <p className="text-muted-foreground">{t("shipping.subtitle", language)}</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={(open) => { setDialogOpen(open); if (!open) resetForm(); }}>
@@ -204,7 +204,7 @@ export default function Shipping() {
                     </SelectContent>
                   </Select>
                 </div>
-                {!hidePrice && <div className="grid grid-cols-2 gap-4">
+                {!hidePrice && <div className="grid grid-cols-2 gap-2 sm:gap-4">
                   <div className="space-y-2">
                     <Label>سعر الحاوية (يوان)</Label>
                     <Input data-testid="input-price-cny" type="number" step="0.01" value={priceCNY} onChange={(e) => setPriceCNY(e.target.value)} placeholder="0.00" />
@@ -223,7 +223,8 @@ export default function Shipping() {
                 {items.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">لا توجد بضائع في المخزن</div>
                 ) : (
-                  <Table>
+                  <div className="overflow-x-auto">
+                  <Table className="min-w-[600px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead className="w-10">اختيار</TableHead>
@@ -255,6 +256,7 @@ export default function Shipping() {
                       ))}
                     </TableBody>
                   </Table>
+                  </div>
                 )}
                 <div className="flex gap-2">
                   <Button variant="outline" onClick={() => setStep("info")}>رجوع</Button>
@@ -462,7 +464,8 @@ function ContainersHistory() {
                 )}
               </div>
               {viewContainer.items && viewContainer.items.length > 0 && (
-                <Table>
+                <div className="overflow-x-auto">
+                <Table className="min-w-[600px]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>{t("common.product", language)}</TableHead>
@@ -485,6 +488,7 @@ function ContainersHistory() {
                     ))}
                   </TableBody>
                 </Table>
+                </div>
               )}
               <Button variant="outline" onClick={() => handlePrint(viewContainer)} className="w-full">
                 <Printer className="h-4 w-4 ml-2" />

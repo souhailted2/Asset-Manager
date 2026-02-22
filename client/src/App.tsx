@@ -336,7 +336,7 @@ function App() {
               <div className="flex h-screen w-full">
                 <AppSidebar />
                 <div className="flex flex-col flex-1 min-w-0">
-                  <header className="flex items-center justify-between gap-2 px-3 border-b h-12 shrink-0">
+                  <header className="flex items-center justify-between gap-2 px-2 sm:px-3 border-b h-12 shrink-0">
                     <SidebarTrigger data-testid="button-sidebar-toggle" />
                     <div className="flex items-center gap-2">
                       {user.role === "warehouse" && (
@@ -347,7 +347,7 @@ function App() {
                           data-testid="button-language-toggle"
                         >
                           <Languages className="h-4 w-4" />
-                          <span className="mr-1">{t("header.switchLang", language)}</span>
+                          <span className="hidden sm:inline mr-1">{t("header.switchLang", language)}</span>
                         </Button>
                       )}
                       <Button
@@ -358,7 +358,7 @@ function App() {
                         data-testid="button-profile-settings"
                       >
                         <Settings className="h-4 w-4" />
-                        <span>{user.displayName}</span>
+                        <span className="hidden sm:inline">{user.displayName}</span>
                       </Button>
                       <Button size="icon" variant="ghost" onClick={handleLogout} data-testid="button-logout">
                         <LogOut className="h-4 w-4" />

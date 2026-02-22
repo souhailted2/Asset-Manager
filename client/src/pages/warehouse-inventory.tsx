@@ -65,7 +65,7 @@ export default function WarehouseInventory() {
 
   if (isLoading) {
     return (
-      <div className="p-6 space-y-6">
+      <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
         <Skeleton className="h-10 w-48" />
         <Skeleton className="h-32 w-full" />
         <Skeleton className="h-64 w-full" />
@@ -74,16 +74,16 @@ export default function WarehouseInventory() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-inventory-title">{t("warehouseInv.title", language)}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-inventory-title">{t("warehouseInv.title", language)}</h1>
           <p className="text-muted-foreground">{t("warehouseInv.subtitle", language)}</p>
         </div>
         {inventory && inventory.length > 0 && (
           <Button variant="outline" onClick={handlePrint} data-testid="button-print-inventory">
             <Printer className="h-4 w-4" />
-            {t("common.print", language)}
+            <span className="hidden sm:inline">{t("common.print", language)}</span>
           </Button>
         )}
       </div>
@@ -95,7 +95,7 @@ export default function WarehouseInventory() {
               <CardTitle className="text-sm font-medium text-muted-foreground">{t("warehouseInv.totalProducts", language)}</CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold" data-testid="text-total-products">{totalProducts}</span>
+              <span className="text-xl sm:text-2xl font-bold" data-testid="text-total-products">{totalProducts}</span>
             </CardContent>
           </Card>
           <Card>
@@ -103,7 +103,7 @@ export default function WarehouseInventory() {
               <CardTitle className="text-sm font-medium text-muted-foreground">{t("warehouseInv.totalQuantity", language)}</CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold" data-testid="text-total-quantity">{totalQuantity}</span>
+              <span className="text-xl sm:text-2xl font-bold" data-testid="text-total-quantity">{totalQuantity}</span>
             </CardContent>
           </Card>
           <Card>
@@ -111,7 +111,7 @@ export default function WarehouseInventory() {
               <CardTitle className="text-sm font-medium text-muted-foreground">{t("warehouseInv.totalWeight", language)} ({t("products.kg", language)})</CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold" data-testid="text-total-weight">{totalWeight.toFixed(2)}</span>
+              <span className="text-xl sm:text-2xl font-bold" data-testid="text-total-weight">{totalWeight.toFixed(2)}</span>
             </CardContent>
           </Card>
           <Card>
@@ -119,7 +119,7 @@ export default function WarehouseInventory() {
               <CardTitle className="text-sm font-medium text-muted-foreground">{t("warehouseInv.totalVolume", language)} (m³)</CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold" data-testid="text-total-volume">{totalVolume.toFixed(4)}</span>
+              <span className="text-xl sm:text-2xl font-bold" data-testid="text-total-volume">{totalVolume.toFixed(4)}</span>
             </CardContent>
           </Card>
         </div>
@@ -134,7 +134,8 @@ export default function WarehouseInventory() {
         ) : (
           <Card>
             <CardContent className="pt-6">
-              <Table>
+              <div className="overflow-x-auto">
+              <Table className="min-w-[600px]">
                 <TableHeader>
                   <TableRow>
                     <TableHead>#</TableHead>
@@ -215,6 +216,7 @@ export default function WarehouseInventory() {
                   })}
                 </TableBody>
               </Table>
+              </div>
             </CardContent>
           </Card>
         )}

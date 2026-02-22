@@ -184,22 +184,22 @@ export default function Expenses() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-expenses-title">صندوق المصاريف</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-expenses-title">صندوق المصاريف</h1>
           <p className="text-muted-foreground">تسجيل وإدارة المصاريف</p>
         </div>
         <div className="flex gap-2 flex-wrap">
           <Button variant="outline" onClick={handlePrint} data-testid="button-print-expenses">
             <Printer className="h-4 w-4" />
-            طباعة
+            <span className="hidden sm:inline">طباعة</span>
           </Button>
           <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
             <DialogTrigger asChild>
               <Button data-testid="button-add-expense">
                 <Plus className="h-4 w-4" />
-                تسجيل مصروف
+                <span className="hidden sm:inline">تسجيل مصروف</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-md">
@@ -258,12 +258,12 @@ export default function Expenses() {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
           <Skeleton className="h-24" />
           <Skeleton className="h-24" />
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-1">
@@ -310,7 +310,8 @@ export default function Expenses() {
       ) : filteredExpenses.length > 0 ? (
         <Card>
           <CardContent className="pt-6" ref={printRef}>
-            <Table>
+            <div className="overflow-x-auto">
+            <Table className="min-w-[600px]">
               <TableHeader>
                 <TableRow>
                   <TableHead>التاريخ</TableHead>
@@ -345,6 +346,7 @@ export default function Expenses() {
                 ))}
               </TableBody>
             </Table>
+            </div>
           </CardContent>
         </Card>
       ) : (

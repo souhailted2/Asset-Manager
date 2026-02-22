@@ -227,10 +227,10 @@ export default function Deliveries() {
   const totalUSD = selectedItems.filter(i => i.currency === "USD").reduce((s, i) => s + (i.price * i.quantity), 0);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-deliveries-title">{t("deliveries.title", language)}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-deliveries-title">{t("deliveries.title", language)}</h1>
           <p className="text-muted-foreground">{t("deliveries.subtitle", language)}</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={(open) => { setDialogOpen(open); if (!open) resetForm(); }}>
@@ -489,7 +489,8 @@ export default function Deliveries() {
                   </Button>
                 </div>
 
-                <Table>
+                <div className="overflow-x-auto">
+                <Table className="min-w-[600px]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>{t("common.product", language)}</TableHead>
@@ -525,6 +526,7 @@ export default function Deliveries() {
                     ))}
                   </TableBody>
                 </Table>
+                </div>
 
                 {selectedItems.some(i => i.productStatus === "semi_manufactured" && i.parts.length > 0) && (
                   <div className="space-y-3">
@@ -540,7 +542,8 @@ export default function Deliveries() {
                           </CardTitle>
                         </CardHeader>
                         <CardContent>
-                          <Table>
+                          <div className="overflow-x-auto">
+                          <Table className="min-w-[600px]">
                             <TableHeader>
                               <TableRow>
                                 <TableHead>الجزء</TableHead>
@@ -566,13 +569,14 @@ export default function Deliveries() {
                               ))}
                             </TableBody>
                           </Table>
+                          </div>
                         </CardContent>
                       </Card>
                     ))}
                   </div>
                 )}
 
-                {!hidePrice && <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {!hidePrice && <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
                   <Card>
                     <CardContent className="p-4 space-y-2">
                       <h4 className="font-semibold text-sm">المجاميع المالية</h4>
@@ -656,7 +660,8 @@ function DeliveriesHistory() {
           </CardHeader>
           {delivery.items && delivery.items.length > 0 && (
             <CardContent>
-              <Table>
+              <div className="overflow-x-auto">
+              <Table className="min-w-[600px]">
                 <TableHeader>
                   <TableRow>
                     <TableHead>{t("common.product", language)}</TableHead>
@@ -683,6 +688,7 @@ function DeliveriesHistory() {
                   ))}
                 </TableBody>
               </Table>
+              </div>
             </CardContent>
           )}
         </Card>

@@ -117,17 +117,17 @@ export default function UserManagement() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-users-title">إدارة المستخدمين</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-users-title">إدارة المستخدمين</h1>
           <p className="text-muted-foreground">إنشاء وإدارة حسابات المستخدمين وصلاحياتهم</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
             <Button data-testid="button-add-user">
               <UserPlus className="h-4 w-4" />
-              إضافة مستخدم
+              <span className="hidden sm:inline">إضافة مستخدم</span>
             </Button>
           </DialogTrigger>
           <DialogContent>
@@ -198,7 +198,8 @@ export default function UserManagement() {
               ))}
             </div>
           ) : users && users.length > 0 ? (
-            <Table>
+            <div className="overflow-x-auto">
+            <Table className="min-w-[600px]">
               <TableHeader>
                 <TableRow>
                   <TableHead>#</TableHead>
@@ -260,6 +261,7 @@ export default function UserManagement() {
                 ))}
               </TableBody>
             </Table>
+            </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <User className="h-12 w-12 text-muted-foreground mb-3" />

@@ -205,16 +205,16 @@ export default function SupplierAccounts() {
   const remainingUSD = (accountData?.totalUSD || 0) - (accountData?.paidUSD || 0);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-accounts-title">حسابات الموردين</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-accounts-title">حسابات الموردين</h1>
           <p className="text-muted-foreground">عرض أرصدة ومدفوعات الموردين</p>
         </div>
         {selectedSupplier && accountData && (
           <Button variant="outline" onClick={handlePrint} data-testid="button-print-account">
             <Printer className="h-4 w-4" />
-            طباعة كشف الحساب
+            <span className="hidden sm:inline">طباعة كشف الحساب</span>
           </Button>
         )}
       </div>
@@ -242,13 +242,13 @@ export default function SupplierAccounts() {
             </div>
           ) : accountData ? (
             <div className="space-y-6" ref={printRef}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">إجمالي المستحق (يوان)</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <span className="text-2xl font-bold" data-testid="text-total-cny">{(accountData.totalCNY || 0).toFixed(2)}</span>
+                    <span className="text-xl sm:text-2xl font-bold" data-testid="text-total-cny">{(accountData.totalCNY || 0).toFixed(2)}</span>
                     <span className="text-sm text-muted-foreground mr-1">CNY</span>
                   </CardContent>
                 </Card>
@@ -257,7 +257,7 @@ export default function SupplierAccounts() {
                     <CardTitle className="text-sm font-medium text-muted-foreground">إجمالي المستحق (دولار)</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <span className="text-2xl font-bold" data-testid="text-total-usd">{(accountData.totalUSD || 0).toFixed(2)}</span>
+                    <span className="text-xl sm:text-2xl font-bold" data-testid="text-total-usd">{(accountData.totalUSD || 0).toFixed(2)}</span>
                     <span className="text-sm text-muted-foreground mr-1">USD</span>
                   </CardContent>
                 </Card>
@@ -306,7 +306,7 @@ export default function SupplierAccounts() {
                   <DialogTrigger asChild>
                     <Button data-testid="button-add-payment">
                       <CreditCard className="h-4 w-4" />
-                      تسجيل دفعة
+                      <span className="hidden sm:inline">تسجيل دفعة</span>
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
@@ -357,7 +357,8 @@ export default function SupplierAccounts() {
               {accountData.deliveryItems && accountData.deliveryItems.length > 0 ? (
                 <Card>
                   <CardContent className="pt-6">
-                    <Table>
+                    <div className="overflow-x-auto">
+                    <Table className="min-w-[600px]">
                       <TableHeader>
                         <TableRow>
                           <TableHead>المنتج</TableHead>
@@ -386,6 +387,7 @@ export default function SupplierAccounts() {
                         ))}
                       </TableBody>
                     </Table>
+                    </div>
                   </CardContent>
                 </Card>
               ) : (
@@ -402,7 +404,8 @@ export default function SupplierAccounts() {
                   <h2 className="text-lg font-semibold">سجل المدفوعات</h2>
                   <Card>
                     <CardContent className="pt-6">
-                      <Table>
+                      <div className="overflow-x-auto">
+                      <Table className="min-w-[600px]">
                         <TableHeader>
                           <TableRow>
                             <TableHead>التاريخ</TableHead>
@@ -451,6 +454,7 @@ export default function SupplierAccounts() {
                           ))}
                         </TableBody>
                       </Table>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>

@@ -304,16 +304,16 @@ export default function Cashbox() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-cashbox-title">صندوق الحسابات</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-cashbox-title">صندوق الحسابات</h1>
           <p className="text-muted-foreground">إدارة دخول وخروج الأموال</p>
         </div>
         <div className="flex gap-2 flex-wrap">
           <Button variant="outline" onClick={handlePrint} data-testid="button-print-cashbox">
             <Printer className="h-4 w-4" />
-            طباعة
+            <span className="hidden sm:inline">طباعة</span>
           </Button>
           <Dialog open={exchangeDialogOpen} onOpenChange={setExchangeDialogOpen}>
             <DialogTrigger asChild>
@@ -523,7 +523,7 @@ export default function Cashbox() {
             <DialogTrigger asChild>
               <Button data-testid="button-add-transaction">
                 <Plus className="h-4 w-4" />
-                تسجيل عملية
+                <span className="hidden sm:inline">تسجيل عملية</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-md">
@@ -585,13 +585,13 @@ export default function Cashbox() {
       </div>
 
       {summaryLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <Skeleton key={i} className="h-24" />
           ))}
         </div>
       ) : summary ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4" ref={printRef}>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4" ref={printRef}>
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-1">
@@ -699,7 +699,8 @@ export default function Cashbox() {
       ) : filteredTransactions.length > 0 ? (
         <Card>
           <CardContent className="pt-6">
-            <Table>
+            <div className="overflow-x-auto">
+            <Table className="min-w-[600px]">
               <TableHeader>
                 <TableRow>
                   <TableHead>التاريخ</TableHead>
@@ -749,6 +750,7 @@ export default function Cashbox() {
                 ))}
               </TableBody>
             </Table>
+            </div>
           </CardContent>
         </Card>
       ) : (

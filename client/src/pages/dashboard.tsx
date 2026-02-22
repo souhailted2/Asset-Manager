@@ -59,13 +59,13 @@ export default function Dashboard() {
   const isLoading = productsLoading || suppliersLoading || containersLoading;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold" data-testid="text-dashboard-title">{t("dashboard.title", language)}</h1>
+        <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-dashboard-title">{t("dashboard.title", language)}</h1>
         <p className="text-muted-foreground">{t("dashboard.overview", language)}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, i) => (
             <Card key={i}>
@@ -86,7 +86,7 @@ export default function Dashboard() {
                 <Package className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{products?.length || 0}</div>
+                <div className="text-xl sm:text-2xl font-bold">{products?.length || 0}</div>
               </CardContent>
             </Card>
 
@@ -96,7 +96,7 @@ export default function Dashboard() {
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{suppliers?.length || 0}</div>
+                <div className="text-xl sm:text-2xl font-bold">{suppliers?.length || 0}</div>
               </CardContent>
             </Card>
 
@@ -106,7 +106,7 @@ export default function Dashboard() {
                 <Ship className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{shippingContainers.length}</div>
+                <div className="text-xl sm:text-2xl font-bold">{shippingContainers.length}</div>
               </CardContent>
             </Card>
 
@@ -116,7 +116,7 @@ export default function Dashboard() {
                 <Anchor className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{arrivedContainers.length}</div>
+                <div className="text-xl sm:text-2xl font-bold">{arrivedContainers.length}</div>
               </CardContent>
             </Card>
           </>
@@ -125,8 +125,8 @@ export default function Dashboard() {
 
       {isAdmin && (
         <div>
-          <h2 className="text-lg font-semibold mb-4" data-testid="text-financial-summary">{t("dashboard.financialSummary", language)}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4" data-testid="text-financial-summary">{t("dashboard.financialSummary", language)}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
             {summaryLoading ? (
               Array.from({ length: 6 }).map((_, i) => (
                 <Card key={i}>
@@ -148,10 +148,10 @@ export default function Dashboard() {
                     <Wallet className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className={`text-lg font-bold ${summary.cashbox.balanceCNY >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} dir="ltr">
+                    <div className={`text-sm sm:text-lg font-bold ${summary.cashbox.balanceCNY >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} dir="ltr">
                       ¥ {formatNumber(summary.cashbox.balanceCNY)}
                     </div>
-                    <div className={`text-lg font-bold ${summary.cashbox.balanceUSD >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} dir="ltr">
+                    <div className={`text-sm sm:text-lg font-bold ${summary.cashbox.balanceUSD >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`} dir="ltr">
                       $ {formatNumber(summary.cashbox.balanceUSD)}
                     </div>
                   </CardContent>
@@ -163,10 +163,10 @@ export default function Dashboard() {
                     <TrendingDown className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className={`text-lg font-bold ${debtColor(summary.supplierDebt.CNY)}`} dir="ltr">
+                    <div className={`text-sm sm:text-lg font-bold ${debtColor(summary.supplierDebt.CNY)}`} dir="ltr">
                       ¥ {formatNumber(summary.supplierDebt.CNY)}
                     </div>
-                    <div className={`text-lg font-bold ${debtColor(summary.supplierDebt.USD)}`} dir="ltr">
+                    <div className={`text-sm sm:text-lg font-bold ${debtColor(summary.supplierDebt.USD)}`} dir="ltr">
                       $ {formatNumber(summary.supplierDebt.USD)}
                     </div>
                   </CardContent>
@@ -178,10 +178,10 @@ export default function Dashboard() {
                     <Truck className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className={`text-lg font-bold ${debtColor(summary.shippingDebt.CNY)}`} dir="ltr">
+                    <div className={`text-sm sm:text-lg font-bold ${debtColor(summary.shippingDebt.CNY)}`} dir="ltr">
                       ¥ {formatNumber(summary.shippingDebt.CNY)}
                     </div>
-                    <div className={`text-lg font-bold ${debtColor(summary.shippingDebt.USD)}`} dir="ltr">
+                    <div className={`text-sm sm:text-lg font-bold ${debtColor(summary.shippingDebt.USD)}`} dir="ltr">
                       $ {formatNumber(summary.shippingDebt.USD)}
                     </div>
                   </CardContent>
@@ -193,10 +193,10 @@ export default function Dashboard() {
                     <Warehouse className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-lg font-bold" dir="ltr">
+                    <div className="text-sm sm:text-lg font-bold" dir="ltr">
                       ¥ {formatNumber(summary.warehouseValue.CNY)}
                     </div>
-                    <div className="text-lg font-bold" dir="ltr">
+                    <div className="text-sm sm:text-lg font-bold" dir="ltr">
                       $ {formatNumber(summary.warehouseValue.USD)}
                     </div>
                   </CardContent>
@@ -208,10 +208,10 @@ export default function Dashboard() {
                     <Container className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-lg font-bold" dir="ltr">
+                    <div className="text-sm sm:text-lg font-bold" dir="ltr">
                       ¥ {formatNumber(summary.containerValue.CNY)}
                     </div>
-                    <div className="text-lg font-bold" dir="ltr">
+                    <div className="text-sm sm:text-lg font-bold" dir="ltr">
                       $ {formatNumber(summary.containerValue.USD)}
                     </div>
                   </CardContent>
@@ -223,10 +223,10 @@ export default function Dashboard() {
                     <Calculator className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-lg font-bold text-primary" dir="ltr">
+                    <div className="text-sm sm:text-lg font-bold text-primary" dir="ltr">
                       ¥ {formatNumber(summary.grandTotal.CNY)}
                     </div>
-                    <div className="text-lg font-bold text-primary" dir="ltr">
+                    <div className="text-sm sm:text-lg font-bold text-primary" dir="ltr">
                       $ {formatNumber(summary.grandTotal.USD)}
                     </div>
                   </CardContent>
@@ -237,7 +237,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">{t("dashboard.productsByStatus", language)}</CardTitle>

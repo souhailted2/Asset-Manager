@@ -284,10 +284,10 @@ export default function Products() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-products-title">{t("products.title", language)}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-products-title">{t("products.title", language)}</h1>
           <p className="text-muted-foreground">{t("products.subtitle", language)}</p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
@@ -306,13 +306,13 @@ export default function Products() {
             data-testid="button-import-products"
           >
             <FileSpreadsheet className="h-4 w-4" />
-            {importing ? "جاري الاستيراد..." : t("products.importExcel", language)}
+            <span className="hidden sm:inline">{importing ? "جاري الاستيراد..." : t("products.importExcel", language)}</span>
           </Button>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button data-testid="button-add-product">
                 <Plus className="h-4 w-4" />
-                {t("products.addProduct", language)}
+                <span className="hidden sm:inline">{t("products.addProduct", language)}</span>
               </Button>
             </DialogTrigger>
             <DialogContent>
@@ -379,7 +379,7 @@ export default function Products() {
             <DialogTrigger asChild>
               <Button variant="outline" data-testid="button-add-composite-product">
                 <Layers className="h-4 w-4" />
-                {t("products.addComposite", language)}
+                <span className="hidden sm:inline">{t("products.addComposite", language)}</span>
               </Button>
             </DialogTrigger>
             <DialogContent>
@@ -447,7 +447,7 @@ export default function Products() {
 
       <Card>
         <CardHeader className="pb-3">
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
             <div className="relative flex-1 min-w-[200px]">
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
@@ -480,7 +480,7 @@ export default function Products() {
             </div>
           ) : filtered.length > 0 ? (
             <div className="overflow-x-auto">
-              <Table>
+              <Table className="min-w-[600px]">
                 <TableHeader>
                   <TableRow>
                     <TableHead>#</TableHead>

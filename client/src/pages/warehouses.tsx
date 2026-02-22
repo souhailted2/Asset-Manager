@@ -91,17 +91,17 @@ export default function Warehouses() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-warehouses-title">{t("warehouses.title", language)}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-warehouses-title">{t("warehouses.title", language)}</h1>
           <p className="text-muted-foreground">{t("warehouses.subtitle", language)}</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
             <Button data-testid="button-add-warehouse">
               <Plus className="h-4 w-4" />
-              {t("warehouses.addWarehouse", language)}
+              <span className="hidden sm:inline">{t("warehouses.addWarehouse", language)}</span>
             </Button>
           </DialogTrigger>
           <DialogContent>
@@ -132,13 +132,13 @@ export default function Warehouses() {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
           {Array.from({ length: 2 }).map((_, i) => (
             <Card key={i}><CardContent className="p-6"><Skeleton className="h-6 w-32" /></CardContent></Card>
           ))}
         </div>
       ) : warehouses && warehouses.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
           {warehouses.map((wh) => (
             <Card key={wh.id} data-testid={`card-warehouse-${wh.id}`}>
               <CardContent className="flex items-center justify-between gap-3 p-6">

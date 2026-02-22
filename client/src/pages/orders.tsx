@@ -161,10 +161,10 @@ export default function Orders() {
   const totalUSD = selectedItems.filter(i => i.currency === "USD").reduce((s, i) => s + (i.price * i.quantityOrdered), 0);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-orders-title">{t("orders.title", language)}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-orders-title">{t("orders.title", language)}</h1>
           <p className="text-muted-foreground">{t("orders.subtitle", language)}</p>
         </div>
         {!hidePrice && (
@@ -213,7 +213,7 @@ export default function Orders() {
                 ) : (
                   <>
                     <div className="overflow-x-auto">
-                      <Table>
+                      <Table className="min-w-[600px]">
                         <TableHeader>
                           <TableRow>
                             <TableHead className="w-10">اختيار</TableHead>
@@ -287,7 +287,8 @@ export default function Orders() {
             {step === "summary" && (
               <div className="space-y-4 pt-4" id="order-summary">
                 <h3 className="font-semibold">المورد: {suppliers?.find(s => s.id === parseInt(supplierId))?.name}</h3>
-                <Table>
+                <div className="overflow-x-auto">
+                <Table className="min-w-[600px]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>{t("common.product", language)}</TableHead>
@@ -316,6 +317,7 @@ export default function Orders() {
                     ))}
                   </TableBody>
                 </Table>
+                </div>
                 {!hidePrice && <div className="flex flex-col gap-2 p-4 bg-muted rounded-md">
                   {totalCNY > 0 && (
                     <div className="flex justify-between items-center">
@@ -507,7 +509,8 @@ function OrdersHistory() {
             </CardHeader>
             {order.items && order.items.length > 0 && (
               <CardContent>
-                <Table>
+                <div className="overflow-x-auto">
+                <Table className="min-w-[600px]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>{t("common.product", language)}</TableHead>
@@ -542,6 +545,7 @@ function OrdersHistory() {
                     ))}
                   </TableBody>
                 </Table>
+                </div>
               </CardContent>
             )}
           </Card>

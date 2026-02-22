@@ -162,7 +162,7 @@ export default function ContainerInvoices() {
 
   if (isLoading) {
     return (
-      <div className="p-6 space-y-4">
+      <div className="p-3 sm:p-6 space-y-3 sm:space-y-4">
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-64 w-full" />
       </div>
@@ -172,17 +172,17 @@ export default function ContainerInvoices() {
   const ungroupedDocs = docs?.filter(d => !d.groupInvoiceId) || [];
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-3 sm:p-6 space-y-3 sm:space-y-4">
       <div className="flex items-center justify-between gap-2 flex-wrap">
-        <h1 className="text-2xl font-bold" data-testid="text-page-title">سجل فواتير الحاويات</h1>
+        <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-page-title">سجل فواتير الحاويات</h1>
         <div className="flex items-center gap-2 flex-wrap">
           <Button variant="outline" onClick={() => setMergeDialogOpen(true)} data-testid="button-merge-invoices">
             <Merge className="h-4 w-4 ml-2" />
-            دمج حاويات
+            <span className="hidden sm:inline">دمج حاويات</span>
           </Button>
           <Button variant="outline" onClick={handlePrint} data-testid="button-print-invoices">
             <Printer className="h-4 w-4 ml-2" />
-            طباعة
+            <span className="hidden sm:inline">طباعة</span>
           </Button>
         </div>
       </div>
@@ -196,7 +196,7 @@ export default function ContainerInvoices() {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
-            <Table id="invoices-table" data-testid="table-invoices">
+            <Table className="min-w-[600px]"id="invoices-table" data-testid="table-invoices">
               <TableHeader>
                 <TableRow>
                   <TableHead className="text-center">رقم الفاتورة</TableHead>

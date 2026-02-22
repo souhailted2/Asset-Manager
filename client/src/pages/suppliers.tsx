@@ -126,17 +126,17 @@ export default function Suppliers() {
   }) || [];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="text-suppliers-title">الموردين</h1>
+          <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-suppliers-title">الموردين</h1>
           <p className="text-muted-foreground">إدارة قائمة الموردين</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
             <Button data-testid="button-add-supplier">
               <Plus className="h-4 w-4" />
-              إضافة مورد
+              <span className="hidden sm:inline">إضافة مورد</span>
             </Button>
           </DialogTrigger>
           <DialogContent>
@@ -196,7 +196,7 @@ export default function Suppliers() {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
           {Array.from({ length: 3 }).map((_, i) => (
             <Card key={i}>
               <CardContent className="p-6">
@@ -208,7 +208,7 @@ export default function Suppliers() {
           ))}
         </div>
       ) : filteredSuppliers.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
           {filteredSuppliers.map((supplier) => (
             <Card key={supplier.id} className="hover-elevate" data-testid={`card-supplier-${supplier.id}`}>
               <CardContent className="p-6">

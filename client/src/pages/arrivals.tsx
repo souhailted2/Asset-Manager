@@ -34,9 +34,9 @@ export default function Arrivals() {
   const arrivedContainers = containers?.filter(c => c.status === "arrived") || [];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold" data-testid="text-arrivals-title">وصول الحاويات</h1>
+        <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-arrivals-title">وصول الحاويات</h1>
         <p className="text-muted-foreground">تتبع وصول الحاويات إلى الميناء</p>
       </div>
 
@@ -47,13 +47,13 @@ export default function Arrivals() {
         </h2>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
             {Array.from({ length: 2 }).map((_, i) => (
               <Card key={i}><CardContent className="p-6"><Skeleton className="h-20 w-full" /></CardContent></Card>
             ))}
           </div>
         ) : shippingContainers.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
             {shippingContainers.map((c) => (
               <Card key={c.id} data-testid={`card-container-${c.id}`}>
                 <CardHeader className="pb-3">
@@ -98,7 +98,7 @@ export default function Arrivals() {
         </h2>
 
         {arrivedContainers.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
             {arrivedContainers.map((c) => (
               <Card key={c.id} data-testid={`card-arrived-${c.id}`}>
                 <CardHeader className="pb-3">
