@@ -1,4 +1,4 @@
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import {
   Package,
   Users,
@@ -114,10 +114,10 @@ export function AppSidebar() {
                     isActive={location === item.url}
                     data-testid={`nav-${item.url.replace("/", "") || "dashboard"}`}
                   >
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon className="h-4 w-4" />
                       <span>{resolveTitle(item.titleKey)}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -137,10 +137,10 @@ export function AppSidebar() {
                     isActive={location === item.url}
                     data-testid={`nav-${item.url.replace("/", "")}`}
                   >
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon className="h-4 w-4" />
                       <span>{resolveTitle(item.titleKey)}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -161,10 +161,10 @@ export function AppSidebar() {
                     isActive={location === item.url}
                     data-testid={`nav-${item.url.replace("/", "")}`}
                   >
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon className="h-4 w-4" />
                       <span>{resolveTitle(item.titleKey)}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -184,10 +184,10 @@ export function AppSidebar() {
                     isActive={location === "/users"}
                     data-testid="nav-users"
                   >
-                    <a href="/users">
+                    <Link href="/users">
                       <UserCog className="h-4 w-4" />
                       <span>إدارة المستخدمين</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>
