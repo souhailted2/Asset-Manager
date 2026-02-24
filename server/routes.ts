@@ -55,12 +55,7 @@ export async function registerRoutes(
       req.session.role = user.role;
       const { password: _, ...safeUser } = user;
       const allowedCategories = await storage.getUserCategories(user.id);
-      req.session.save((err) => {
-        if (err) {
-          return res.status(500).json({ message: "خطأ في حفظ الجلسة" });
-        }
-        res.json({ ...safeUser, allowedCategories });
-      });
+      res.json({ ...safeUser, allowedCategories });
     } catch (e: any) {
       res.status(500).json({ message: e.message });
     }

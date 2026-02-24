@@ -33,11 +33,24 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 
 const PgSession = connectPgSimple(session);
+
+import pg from "pg";
+const sessionPool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+sessionPool.query(`
+  CREATE TABLE IF NOT EXISTS "session" (
+    "sid" varchar NOT NULL COLLATE "default",
+    "sess" json NOT NULL,
+    "expire" timestamp(6) NOT NULL,
+    CONSTRAINT "session_pkey" PRIMARY KEY ("sid")
+  );
+  CREATE INDEX IF NOT EXISTS "IDX_session_expire" ON "session" ("expire");
+`).catch(err => console.error("Session table creation error:", err));
+
 app.use(
   session({
     store: new PgSession({
-      conString: process.env.DATABASE_URL,
-      createTableIfMissing: true,
+      pool: sessionPool,
+      tableName: "session",
     }),
     secret: process.env.SESSION_SECRET || "inventory-secret-key",
     resave: false,
