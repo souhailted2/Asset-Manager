@@ -5,7 +5,7 @@
 -- =====================================================
 
 -- ===== USERS =====
-INSERT INTO users (id, username, password, display_name, role, active, created_at) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO users (id, username, password, display_name, role, active, created_at) VALUES
 (1, 'admin', '$2b$10$Hi7ASF9SnHOXVP5b3nf66eF0MwhmiOPUVolgzVmXRuDUFkSc7VUj.', 'المدير', 'admin', true, '2026-02-15 06:10:17.027526'),
 (2, 'tedjani', '$2b$10$uB3pG1GG49KpQvS8TbpgAe.tkyoz1ApJCq/X8G/dG.YBP2MLbyC5S', 'tedjani', 'user', true, '2026-02-15 06:42:36.735498'),
 (3, 'tarek', '$2b$10$kKWovlBSsCWq8J0tiNbiB.fQesvRqsNXmBdLm5qYAQEGDGqOWAaYu', 'tarek', 'user', true, '2026-02-15 08:04:54.18516'),
@@ -14,7 +14,7 @@ INSERT INTO users (id, username, password, display_name, role, active, created_a
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== CATEGORIES =====
-INSERT INTO categories (id, name) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO categories (id, name) VALUES
 (1, 'boulon'),
 (2, 'VIDE'),
 (3, 'VIDE2'),
@@ -25,7 +25,7 @@ INSERT INTO categories (id, name) OVERRIDING SYSTEM VALUE VALUES
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== SUPPLIERS =====
-INSERT INTO suppliers (id, name, phone, address) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO suppliers (id, name, phone, address) VALUES
 (1, 'BALA 1 LILI', '+86 20 8888 1234', 'جوانزو، الصين'),
 (2, 'MOUSSA', '+86 755 2666 5678', 'شنزن، الصين'),
 (3, 'BAGUETE FONT', '+86 579 8523 9012', 'ييوو، تشجيانغ، الصين'),
@@ -37,19 +37,19 @@ INSERT INTO suppliers (id, name, phone, address) OVERRIDING SYSTEM VALUE VALUES
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== WAREHOUSES =====
-INSERT INTO warehouses (id, name) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO warehouses (id, name) VALUES
 (1, 'YIWU'),
 (2, 'مخزن شنزن'),
 (3, 'depot YIWU')
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== SHIPPING COMPANIES =====
-INSERT INTO shipping_companies (id, name, phone, address) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO shipping_companies (id, name, phone, address) VALUES
 (1, 'magie', '', '')
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== PRODUCTS =====
-INSERT INTO products (id, name, quantity, category_id, status, status_changed_at, name_zh) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO products (id, name, quantity, category_id, status, status_changed_at, name_zh) VALUES
 (83, 'colon meulongeur avabo plastic', 2600, 9, 'received', '2026-02-17 13:51:50.686', NULL),
 (84, 'poignee melongeur plastic', 7000, 9, 'received', '2026-02-17 13:51:50.775', NULL),
 (85, 'coce melongeur avabo plastic', 4940, 9, 'received', '2026-02-17 13:51:50.864', NULL),
@@ -116,7 +116,7 @@ INSERT INTO products (id, name, quantity, category_id, status, status_changed_at
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== ORDERS =====
-INSERT INTO orders (id, supplier_id, created_at, confirmed) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO orders (id, supplier_id, created_at, confirmed) VALUES
 (1, 1, '2026-02-14 23:15:56.59337', 'confirmed'),
 (2, 1, '2026-02-14 23:22:18.301675', 'confirmed'),
 (3, 1, '2026-02-14 23:54:49.500408', 'confirmed'),
@@ -157,7 +157,7 @@ INSERT INTO orders (id, supplier_id, created_at, confirmed) OVERRIDING SYSTEM VA
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== ORDER ITEMS =====
-INSERT INTO order_items (id, order_id, product_id, quantity_requested, quantity_ordered, price, currency) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO order_items (id, order_id, product_id, quantity_requested, quantity_ordered, price, currency) VALUES
 (57, 33, 83, 0, 2600, 0, 'CNY'),
 (58, 33, 84, 7000, 7000, 0, 'CNY'),
 (59, 33, 85, 4940, 4940, 0, 'CNY'),
@@ -224,7 +224,7 @@ INSERT INTO order_items (id, order_id, product_id, quantity_requested, quantity_
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== DELIVERIES =====
-INSERT INTO deliveries (id, order_id, supplier_id, warehouse_id, created_at) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO deliveries (id, order_id, supplier_id, warehouse_id, created_at) VALUES
 (1, NULL, 1, 1, '2026-02-14 23:24:47.611285'),
 (2, NULL, 1, 1, '2026-02-14 23:58:38.254867'),
 (3, NULL, 4, 1, '2026-02-15 06:31:02.78927'),
@@ -246,7 +246,7 @@ INSERT INTO deliveries (id, order_id, supplier_id, warehouse_id, created_at) OVE
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== DELIVERY ITEMS =====
-INSERT INTO delivery_items (id, delivery_id, product_id, quantity, price, currency, length, width, height, weight, pieces_per_carton) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO delivery_items (id, delivery_id, product_id, quantity, price, currency, length, width, height, weight, pieces_per_carton) VALUES
 (46, 17, 83, 2600, 0, 'CNY', NULL, NULL, NULL, NULL, NULL),
 (47, 17, 84, 7000, 0, 'CNY', NULL, NULL, NULL, NULL, NULL),
 (48, 17, 85, 4940, 0, 'CNY', NULL, NULL, NULL, NULL, NULL),
@@ -287,7 +287,7 @@ INSERT INTO delivery_items (id, delivery_id, product_id, quantity, price, curren
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== CONTAINERS =====
-INSERT INTO containers (id, invoice_number, container_number, shipping_company, warehouse_id, status, created_at, shipping_company_id, price_cny, price_usd) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO containers (id, invoice_number, container_number, shipping_company, warehouse_id, status, created_at, shipping_company_id, price_cny, price_usd) VALUES
 (1, '1305', ',jgvjhg,nvh,', 'cma', 1, 'arrived', '2026-02-14 23:25:52.212255', NULL, 0, 0),
 (2, '103', 'jkljklhkjhkhj', '', 3, 'arrived', '2026-02-15 06:33:16.801871', NULL, 0, 0),
 (3, '120', '16', 'magie', 1, 'arrived', '2026-02-15 17:28:50.685607', 1, 4500, 5000),
@@ -304,7 +304,7 @@ INSERT INTO containers (id, invoice_number, container_number, shipping_company, 
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== CONTAINER DOCUMENTS =====
-INSERT INTO container_documents (id, container_id, invoice_number, invoice_date, shipping_bill, origin_certificate, conformity_certificate, invoice, money_arrival, money_arrival_currency, cashbox_transaction_id, created_at, group_invoice_id) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO container_documents (id, container_id, invoice_number, invoice_date, shipping_bill, origin_certificate, conformity_certificate, invoice, money_arrival, money_arrival_currency, cashbox_transaction_id, created_at, group_invoice_id) VALUES
 (1, 5, '103', '2026-02-15 20:19:18.56', true, true, true, 25500, 25450, 'USD', 7, '2026-02-15 20:19:18.575719', NULL),
 (2, 6, '202507', '2026-02-15 21:21:42.312', true, true, true, 100, 100, 'CNY', 8, '2026-02-15 21:21:42.327328', NULL),
 (3, 7, '202507', '2026-02-15 21:22:22.563', true, true, true, NULL, 1100, 'CNY', 13, '2026-02-15 21:22:22.580242', NULL),
@@ -317,19 +317,19 @@ INSERT INTO container_documents (id, container_id, invoice_number, invoice_date,
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== PAYMENTS =====
-INSERT INTO payments (id, supplier_id, amount, currency, note, created_at) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO payments (id, supplier_id, amount, currency, note, created_at) VALUES
 (14, 1, 8108, 'CNY', '', '2026-02-17 14:08:42.284124'),
 (15, 6, 50000, 'CNY', '', '2026-02-17 14:20:53.855772')
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== SHIPPING PAYMENTS =====
-INSERT INTO shipping_payments (id, shipping_company_id, amount, currency, note, created_at) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO shipping_payments (id, shipping_company_id, amount, currency, note, created_at) VALUES
 (3, 1, 28065, 'CNY', '', '2026-02-17 13:14:28.279479'),
 (4, 1, 34673, 'USD', '', '2026-02-17 13:14:41.255386')
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== CASHBOX TRANSACTIONS =====
-INSERT INTO cashbox_transactions (id, type, category, amount, currency, supplier_id, shipping_company_id, description, created_at, payment_id, shipping_payment_id, expense_id) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO cashbox_transactions (id, type, category, amount, currency, supplier_id, shipping_company_id, description, created_at, payment_id, shipping_payment_id, expense_id) VALUES
 (7, 'income', 'other', 25450, 'USD', NULL, NULL, 'وصول أموال - فاتورة رقم 103', '2026-02-15 20:19:18.575719', NULL, NULL, NULL),
 (8, 'income', 'other', 100, 'CNY', NULL, NULL, 'وصول أموال - فاتورة رقم 202507', '2026-02-15 21:21:42.327328', NULL, NULL, NULL),
 (9, 'income', 'other', 100, 'CNY', NULL, NULL, 'وصول أموال - فاتورة رقم 202601', '2026-02-15 22:08:03.395091', NULL, NULL, NULL),
@@ -345,7 +345,7 @@ INSERT INTO cashbox_transactions (id, type, category, amount, currency, supplier
 ON CONFLICT (id) DO NOTHING;
 
 -- ===== USER CATEGORIES =====
-INSERT INTO user_categories (id, user_id, category_id) OVERRIDING SYSTEM VALUE VALUES
+INSERT INTO user_categories (id, user_id, category_id) VALUES
 (2, 3, 4),
 (3, 2, 4),
 (4, 2, 1),
@@ -357,19 +357,19 @@ INSERT INTO user_categories (id, user_id, category_id) OVERRIDING SYSTEM VALUE V
 ON CONFLICT (id) DO NOTHING;
 
 -- Reset sequences
-SELECT setval('users_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM users));
-SELECT setval('categories_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM categories));
-SELECT setval('suppliers_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM suppliers));
-SELECT setval('warehouses_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM warehouses));
-SELECT setval('shipping_companies_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM shipping_companies));
-SELECT setval('products_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM products));
-SELECT setval('orders_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM orders));
-SELECT setval('order_items_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM order_items));
-SELECT setval('deliveries_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM deliveries));
-SELECT setval('delivery_items_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM delivery_items));
-SELECT setval('containers_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM containers));
-SELECT setval('container_documents_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM container_documents));
-SELECT setval('payments_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM payments));
-SELECT setval('shipping_payments_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM shipping_payments));
-SELECT setval('cashbox_transactions_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM cashbox_transactions));
-SELECT setval('user_categories_id_seq', (SELECT GREATEST(COALESCE(MAX(id), 0), 1) FROM user_categories));
+SELECT setval('users_id_seq', (SELECT COALESCE(MAX(id), 0) FROM users));
+SELECT setval('categories_id_seq', (SELECT COALESCE(MAX(id), 0) FROM categories));
+SELECT setval('suppliers_id_seq', (SELECT COALESCE(MAX(id), 0) FROM suppliers));
+SELECT setval('warehouses_id_seq', (SELECT COALESCE(MAX(id), 0) FROM warehouses));
+SELECT setval('shipping_companies_id_seq', (SELECT COALESCE(MAX(id), 0) FROM shipping_companies));
+SELECT setval('products_id_seq', (SELECT COALESCE(MAX(id), 0) FROM products));
+SELECT setval('orders_id_seq', (SELECT COALESCE(MAX(id), 0) FROM orders));
+SELECT setval('order_items_id_seq', (SELECT COALESCE(MAX(id), 0) FROM order_items));
+SELECT setval('deliveries_id_seq', (SELECT COALESCE(MAX(id), 0) FROM deliveries));
+SELECT setval('delivery_items_id_seq', (SELECT COALESCE(MAX(id), 0) FROM delivery_items));
+SELECT setval('containers_id_seq', (SELECT COALESCE(MAX(id), 0) FROM containers));
+SELECT setval('container_documents_id_seq', (SELECT COALESCE(MAX(id), 0) FROM container_documents));
+SELECT setval('payments_id_seq', (SELECT COALESCE(MAX(id), 0) FROM payments));
+SELECT setval('shipping_payments_id_seq', (SELECT COALESCE(MAX(id), 0) FROM shipping_payments));
+SELECT setval('cashbox_transactions_id_seq', (SELECT COALESCE(MAX(id), 0) FROM cashbox_transactions));
+SELECT setval('user_categories_id_seq', (SELECT COALESCE(MAX(id), 0) FROM user_categories));
