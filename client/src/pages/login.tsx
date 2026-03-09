@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Package, LogIn } from "lucide-react";
+import { LogIn } from "lucide-react";
 
 interface LoginProps {
   onLogin: (user: any) => void;
@@ -62,24 +62,26 @@ export default function Login({ onLogin }: LoginProps) {
         >
           <CardHeader className="text-center space-y-4 pb-2">
             <div className="flex justify-center">
-              <div
-                className="flex h-20 w-20 items-center justify-center rounded-full"
+              <img
+                src="/logo.png"
+                alt="Group New Technology"
+                className="h-24 w-24 rounded-full object-contain"
                 style={{
-                  background: "linear-gradient(135deg, hsl(160 84% 39%) 0%, hsl(160 84% 50%) 50%, hsl(199 89% 48%) 100%)",
                   boxShadow: "0 4px 20px hsl(160 84% 39% / 0.4), 0 0 40px hsl(160 84% 39% / 0.15)",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  padding: "8px",
                 }}
-              >
-                <Package className="h-10 w-10 text-white" />
-              </div>
+                data-testid="img-company-logo"
+              />
             </div>
             <CardTitle
               className="text-2xl font-bold text-white"
               data-testid="text-login-title"
             >
-              نظام إدارة المخزون
+              Group New Technology
             </CardTitle>
             <p className="text-sm" style={{ color: "rgba(255, 255, 255, 0.6)" }}>
-              تسجيل الدخول للمتابعة
+              نظام إدارة المخزون
             </p>
           </CardHeader>
           <CardContent className="pt-2">
@@ -142,7 +144,7 @@ export default function Login({ onLogin }: LoginProps) {
         style={{ color: "rgba(255, 255, 255, 0.35)" }}
         data-testid="text-footer-version"
       >
-        نظام إدارة المخزون v1.0
+        Group New Technology v1.0
       </p>
 
       <style>{`
