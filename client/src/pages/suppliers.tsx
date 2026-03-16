@@ -274,6 +274,7 @@ export default function Suppliers() {
             <div className="space-y-2">
               <Label>اسم المورد</Label>
               <Input
+                autoFocus
                 data-testid="input-edit-supplier-name"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
