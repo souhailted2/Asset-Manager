@@ -52,6 +52,8 @@ export default function Orders() {
   const [orderItems, setOrderItems] = useState<OrderItemDraft[]>([]);
   const [step, setStep] = useState<"supplier" | "items" | "summary">("supplier");
   const [confirmed, setConfirmed] = useState(false);
+  const [showNewSupplier, setShowNewSupplier] = useState(false);
+  const [newSupplierName, setNewSupplierName] = useState("");
 
   const { data: suppliers } = useQuery<Supplier[]>({
     queryKey: ["/api/suppliers"],
@@ -100,6 +102,8 @@ export default function Orders() {
     setOrderItems([]);
     setStep("supplier");
     setConfirmed(false);
+    setShowNewSupplier(false);
+    setNewSupplierName("");
   };
 
   const handleSelectSupplier = () => {
@@ -199,6 +203,43 @@ export default function Orders() {
                     </SelectContent>
                   </Select>
                 </div>
+
+                <div className="border rounded-md p-3 space-y-2">
+                  <button
+                    type="button"
+                    className="text-sm text-primary flex items-center gap-1 hover:underline"
+                    onClick={() => setShowNewSupplier(!showNewSupplier)}
+                    data-testid="button-toggle-new-supplier"
+                  >
+                    <Plus className="h-3.5 w-3.5" />
+                    {showNewSupplier ? "إلغاء" : "إضافة مورد جديد"}
+                  </button>
+                  {showNewSupplier && (
+                    <div className="flex gap-2 pt-1">
+                      <Input
+                        autoFocus
+                        data-testid="input-new-supplier-name"
+                        placeholder="اسم المورد"
+                        value={newSupplierName}
+                        onChange={(e) => setNewSupplierName(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && newSupplierName.trim()) {
+                            createSupplierQuickMutation.mutate(newSupplierName.trim());
+                          }
+                        }}
+                      />
+                      <Button
+                        data-testid="button-save-new-supplier"
+                        onClick={() => newSupplierName.trim() && createSupplierQuickMutation.mutate(newSupplierName.trim())}
+                        disabled={createSupplierQuickMutation.isPending || !newSupplierName.trim()}
+                        size="sm"
+                      >
+                        {createSupplierQuickMutation.isPending ? "..." : "حفظ"}
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
                 <Button data-testid="button-next-step" className="w-full" onClick={handleSelectSupplier}>{t("common.next", language)}</Button>
               </div>
             )}
@@ -562,7 +603,7 @@ function OrdersHistory() {
               <p className="text-sm text-muted-foreground">المنتج: {editingItem.productName}{editingItem.productNameZh && <span className="block text-sm text-muted-foreground" dir="ltr">{editingItem.productNameZh}</span>}</p>
               <div className="space-y-2">
                 <Label>الكمية المطلوبة</Label>
-                <Input data-testid="input-edit-order-qty" type="number" value={editQtyOrdered} onChange={(e) => setEditQtyOrdered(e.target.value)} />
+                <Input autoFocus data-testid="input-edit-order-qty" type="number" value={editQtyOrdered} onChange={(e) => setEditQtyOrdered(e.target.value)} />
               </div>
               {!hidePrice && <div className="space-y-2">
                 <Label>السعر</Label>
