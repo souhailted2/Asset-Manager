@@ -391,6 +391,7 @@ export default function Products() {
                 <div className="space-y-2">
                   <Label>{t("products.productName", language)}</Label>
                   <Input
+                    autoFocus
                     data-testid="input-composite-name"
                     value={compositeName}
                     onChange={(e) => setCompositeName(e.target.value)}
