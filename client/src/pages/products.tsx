@@ -323,6 +323,7 @@ export default function Products() {
                 <div className="space-y-2">
                   <Label>{t("products.productName", language)}</Label>
                   <Input
+                    autoFocus
                     data-testid="input-product-name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -675,6 +676,7 @@ export default function Products() {
             <div className="space-y-2">
               <Label>{t("products.productName", language)}</Label>
               <Input
+                autoFocus
                 data-testid="input-edit-product-name"
                 value={editName}
                 onChange={(e) => setEditName(e.target.value)}
@@ -783,6 +785,7 @@ function PartsDialog({ product, open, onOpenChange }: { product: Product; open: 
             <div className="col-span-2 md:col-span-2 lg:col-span-5">
               <Label>{t("products.partName", language)}</Label>
               <Input
+                autoFocus
                 data-testid="input-part-name"
                 value={partName}
                 onChange={(e) => setPartName(e.target.value)}
