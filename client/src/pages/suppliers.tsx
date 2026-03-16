@@ -146,8 +146,9 @@ export default function Suppliers() {
             <div className="space-y-4 pt-4">
               <div className="space-y-2">
                 <Label>اسم المورد</Label>
-                <Input
+                <Input autoFocus
                   data-testid="input-supplier-name"
+                  autoFocus
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="أدخل اسم المورد"
