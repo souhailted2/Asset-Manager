@@ -185,7 +185,7 @@ export default function Shipping() {
                 </div>
                 <div className="space-y-2">
                   <Label>{t("shipping.invoiceNumber", language)}</Label>
-                  <Input data-testid="input-invoice" value={invoiceNumber} onChange={(e) => setInvoiceNumber(e.target.value)} placeholder={t("shipping.invoiceNumber", language)} />
+                  <Input autoFocus data-testid="input-invoice" value={invoiceNumber} onChange={(e) => setInvoiceNumber(e.target.value)} placeholder={t("shipping.invoiceNumber", language)} />
                 </div>
                 <div className="space-y-2">
                   <Label>{t("shipping.containerNumber", language)}</Label>
@@ -508,7 +508,7 @@ function ContainersHistory() {
             <div className="space-y-3">
               <div className="space-y-1">
                 <Label>{t("shipping.invoiceNumber", language)}</Label>
-                <Input value={editInvoice} onChange={(e) => setEditInvoice(e.target.value)} data-testid="input-edit-container-invoice" />
+                <Input autoFocus value={editInvoice} onChange={(e) => setEditInvoice(e.target.value)} data-testid="input-edit-container-invoice" />
               </div>
               <div className="space-y-1">
                 <Label>{t("shipping.containerNumber", language)}</Label>
